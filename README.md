@@ -19,3 +19,4 @@ Description of the python scripts:
   -  plot_pft_clima_fronts.py: plot the climatological year PFT chlorophyll subdivided in ecoregions and fronts
   -  plot_pft_longitudinal.py: plot the longitudinal distribution of PFT chlorophyll concentration
   -  plot_relative_pft.py: plot the relative concentration of PFTs subdivided in ecoregions and frons
+  -  plot_table.py: plot tables showing the percentual increments of PFT and nutrients subdivided in fronts and seasons
