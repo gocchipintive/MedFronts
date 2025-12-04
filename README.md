@@ -20,3 +20,6 @@ Description of the python scripts:
   -  plot_pft_longitudinal.py: plot the longitudinal distribution of PFT chlorophyll concentration
   -  plot_relative_pft.py: plot the relative concentration of PFTs subdivided in ecoregions and frons
   -  plot_table.py: plot tables showing the percentual increments of PFT and nutrients subdivided in fronts and seasons
+
+Example figure of the identification of fronts, weak fronts are identified in yellow, strong fronts in red. The last box is a confront with fronts identified by thermal gradients from satellites (Sudre, F. et al. 2023)
+![image](sst_hi_chl_fronts_2020-04-01.png)
