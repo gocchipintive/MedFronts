@@ -10,11 +10,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # === INPUT FILE ===
-INFILE = "RESULTS/daily_climatology_ecoregions.nc"
+INFILE = "RESULTS/daily_climatology_ecoregions_P.nc"
 OUTFIG = "FIGS/pft_front_region_bars.png"
 
 # === SETTINGS ===
 PFTS = ["P1l", "P2l", "P3l", "P4l"]
+PFTS_labels = ['Diatoms', 'Nanoflagellates', 'Picoplankton', 'Dinoflagellates']
 COLORS = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]  # blue, orange, green, red
 FRONT_LABELS = ["no", "weak", "strong"]
 
@@ -53,9 +54,9 @@ for i, region in enumerate(ecoregions):
 
     # For each front, plot stacked bars
     bottoms = np.zeros(len(FRONT_LABELS))
-    for pft, color in zip(PFTS, COLORS):
+    for lab, pft, color in zip(PFTS_labels, PFTS, COLORS):
         vals = data_region.sel(front=FRONT_LABELS).sel(pft=pft).values
-        ax.bar(FRONT_LABELS, vals, bottom=bottoms, color=color, edgecolor='black', label=pft[:2])
+        ax.bar(FRONT_LABELS, vals, bottom=bottoms, color=color, edgecolor='black', label=lab)
         bottoms += np.nan_to_num(vals)
 
     ax.set_title(str(region), fontsize=9, weight='bold')

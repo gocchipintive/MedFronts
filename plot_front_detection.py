@@ -7,7 +7,7 @@ import cartopy.feature as cfeature
 import numpy as np
 
 which = 'april'
-#which = 'june'
+which = 'june'
 if which == 'june':
     sst_file = "/g100_work/OGS23_PRACE_IT/plazzari/NECCTON/Neccton_hindcast1999_2022_v22/wrkdir/MODEL/FORCINGS/2020/06/T20200601-12:00:00.nc"
     tg_file  = "/g100_scratch/userexternal/gocchipi/HI_index/TG_MedSea_2020-6-1.nc"
@@ -124,7 +124,7 @@ contour6 = axs[2].contour(ds_chl.lon, ds_chl.lat, mask_strong_fronts, levels=[0.
 
 # Plot TG  and contours of tg_mask
 cmap_tg = cmocean.cm.balance
-im4 = axs[3].pcolormesh(ds_tg.lon, ds_tg.lat, tg, cmap=cmap_tg, vmin=0, vmax=threshold*2, transform=ccrs.PlateCarree())
+im4 = axs[3].pcolormesh(ds_tg.lon, ds_tg.lat, tg, cmap=cmap_tg, vmin=0, vmax=threshold*1.5, transform=ccrs.PlateCarree())
 axs[3].set_title(f"Temperature Gradient with threshold {threshold} °C/km")
 #cbar4
 cbar4 = plt.colorbar(im4, ax=axs[3], orientation='vertical', pad=0.02, aspect=16, shrink=0.5)

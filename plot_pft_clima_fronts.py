@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load the dataset
-filename = '/g100_scratch/userexternal/gocchipi/HI_index/RESULTS/daily_climatology_ecoregions.nc'
+filename = '/g100_scratch/userexternal/gocchipi/HI_index/RESULTS/daily_climatology_ecoregions_P.nc'
 ds = xr.open_dataset(filename)
 
 P1l_mean = ds["P1l_ecoregion_mean"] # (time, ecoregion, front strength)
@@ -19,13 +19,13 @@ P4l_std = ds["P4l_ecoregion_std"] # (time, ecoregion, front strength)
 time = ds["dayofyear"] # (time)
 
 MEDITERRANEAN_ECOREGIONS = [
+    'Alboran Sea',
+    'Western Mediterranean',
+    'Tunisian Plateau/Gulf of Sidra',
+    'Ionian Sea',
     'Adriatic Sea',
     'Aegean Sea',
-    'Alboran Sea',
-    'Ionian Sea',
-    'Levantine Sea',
-    'Western Mediterranean',
-    'Tunisian Plateau/Gulf of Sidra'
+    'Levantine Sea'
 ]
 
 # Define colors for each front strenght
@@ -40,7 +40,7 @@ fig, axs = plt.subplots(7, 4, figsize=(20, 25), sharex=True, sharey=True)
 for i, ecoregion in enumerate(MEDITERRANEAN_ECOREGIONS):
     for j, (P_mean, P_std, pft) in enumerate(zip([P1l_mean, P2l_mean, P3l_mean, P4l_mean],
                                                  [P1l_std, P2l_std, P3l_std, P4l_std],
-                                                 ['P1', 'P2', 'P3', 'P4'])):
+                                                 ['Diatoms', 'Nanoflagellates', 'Picoplankton', 'Dinoflagellates'])):
         ax = axs[i, j]
         for k in range(3): # for each front strength
             mean = P_mean[:, i, k]

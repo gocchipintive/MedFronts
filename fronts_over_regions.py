@@ -64,7 +64,7 @@ for region_name, flag in region_flags.items():
     region_means[region_name] = (mean1, mean2, remainder)
 
 #plot means in a bar inside each region
-fig = plt.figure(figsize=(10, 3))
+fig = plt.figure(figsize=(10, 5))
 ax = plt.subplot(1, 1, 1, projection=ccrs.PlateCarree())
 #add boundaries lat max 45.97917 min 30.1875, lon max 36.29167 min -8.875
 ax.set_extent([-10, 40, 30, 46], crs=ccrs.PlateCarree())
@@ -103,10 +103,13 @@ for idx, row in gdf_med.iterrows():
         bottom += height
     # Add ticks/labels: fraction at the top of each section
     cum_height = y
-    for v in values:
-        label_y = cum_height + v*scale/2  # place label at center of section
+    for ii,v in enumerate(values):
+        if ii==1:
+            label_y = cum_height + v*scale/2 - cum_height/100  # place label at center of section
+        else:
+            label_y = cum_height + v*scale/2  # place label at center of section
         ax.text(
-            x + text_offset, label_y, f"{v:.2f}",
+            x + text_offset, label_y, f"{v*100:.0f}",
             ha='left', va='center', fontsize=8, color='black',
             bbox=dict(facecolor='white', edgecolor='none', alpha=0.7),
             transform=ccrs.PlateCarree()
@@ -125,7 +128,7 @@ ax.add_feature(cfeature.OCEAN, facecolor="white")
 
 #ax.set_xlabel('Longitude')
 #ax.set_ylabel('Latitude')
-ax.set_title('Mediterranean Ecoregions: Front Frequency', fontsize=20)
+ax.set_title('Mediterranean Ecoregions: Front Frequency [%]', fontsize=20, y=1.12)
 
 from matplotlib.patches import Patch
 legend_elements = [
@@ -133,7 +136,8 @@ legend_elements = [
     Patch(facecolor='#bcbd22', edgecolor='k', label='Weak Fronts'),
     Patch(facecolor='#9467bd', edgecolor='k', label='Strong Fronts')
 ]
-ax.legend(handles=legend_elements, loc='upper right')
+ax.legend(ncols=3,handles=legend_elements, loc='upper center', bbox_to_anchor=(0.5, 1.1))
 
 fig.tight_layout()
+fig.show()
 fig.savefig('FIGS/mediterranean_fronts_over_regions.png', dpi=300)

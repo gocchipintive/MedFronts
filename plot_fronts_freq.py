@@ -83,7 +83,8 @@ gls.right_labels=False # suppress right labels
 if var == "P_l":
     #cbar.set_label(r"Chl $[mg/m^3]$", fontsize=15)
     #st cbar ticks to 0.01, 0.1, 0.5, 1
-    cbar.set_ticks([0.05, 0.1, 0.5, 1])
+    #cbar.set_ticks([0.05, 0.1, 0.5, 1])
+    cbar.set_ticks([0.05, 0.1, 0.2, 0.5])
     ax.set_title(r"Mean Chl-a $[mg/m^3]$", fontsize=20)
 elif var == "HI_5_10":
     ax.set_title("Weak Fronts Frequency [%]", fontsize=20)

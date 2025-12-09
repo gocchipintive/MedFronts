@@ -5,10 +5,11 @@ import matplotlib.colors as mcolors
 import os
 
 # === SETTINGS ===
-#VARS = ['P1l', 'P2l', 'P3l', 'P4l', 'Total']  # now includes Total
-VARS = ['N1p','N3n']
+VARS = ['P1l', 'P2l', 'P3l', 'P4l', 'Total']  # now includes Total
+#VARS = ['N1p','N3n']
 INPUT_DIR = "RESULTS"
 OUTPUT_DIR = "FIGS"
+LABELS = ['Diatoms', 'Nanoflagellates', 'Picoplankton', 'Dinoflagellates']
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 # === COLOR FUNCTION ===
@@ -36,14 +37,14 @@ def value_to_color(val):
         return (1, 1, 1)
 
 # === LOOP OVER VARIABLES ===
-for var in VARS:
+for var,lab in zip(VARS,LABELS):
     csv_file = os.path.join(INPUT_DIR, f"{var}_seasonal_percent_change.csv")
     if not os.path.exists(csv_file):
         print(f"⚠️ File not found: {csv_file}")
         continue
 
     output_png = os.path.join(OUTPUT_DIR, f"{var}_colored_table.png")
-    title = f"{var} – Seasonal Percent Change (Front vs No Front)"
+    title = f"{lab} – Seasonal Percent Change (Front vs No Front)"
 
     # === READ DATA ===
     df = pd.read_csv(csv_file, index_col=0).round(1)
